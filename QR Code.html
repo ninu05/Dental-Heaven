@@ -336,7 +336,7 @@
 <body>
     <!-- Home Button -->
     <div class="home-button">
-        <a href="sample.html" title="Back to Home">
+        <a href="index.html" title="Back to Home">
             <i class="fas fa-home"></i>
         </a>
     </div>
@@ -360,7 +360,7 @@
                         
                         if (!paymentData) {
                             alert('Please complete payment details first');
-                            window.location.href = 'sample.html#plans';
+                            window.location.href = 'index.html#plans';
                             return;
                         }
                         
@@ -376,7 +376,7 @@
                         } catch (error) {
                             console.error('Error processing payment data:', error);
                             alert('There was an error processing your payment details. Please try again.');
-                            window.location.href = 'sample.html#plans';
+                            window.location.href = 'index.html#plans';
                         }
                     });
                 </script>
