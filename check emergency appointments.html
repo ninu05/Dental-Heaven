@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Appointments - Dental Heaven</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #34c3c3;
+            --secondary-color: #088bac;
+            --accent-color: #c9c0bf;
+            --background-color: #f9f9f9;
+            --text-color: #2c3e50;
+            --card-background: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --info-color: #ef340b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #f0d3d3 100%);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 25px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo i {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            filter: drop-shadow(0 2px 4px rgba(231, 76, 60, 0.3));
+        }
+
+        h1 {
+            color: var(--text-color);
+            margin: 10px 0;
+            font-size: 2.4rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin: 15px 0 25px;
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+
+        .emergency-badge {
+            display: inline-block;
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        .emergency-badge i {
+            margin-right: 5px;
+        }
+
+        .appointment-container {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .appointment-card {
+            background: var(--card-background);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .appointment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .appointment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .appointment-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            border-bottom: 1px dashed rgba(192, 57, 43, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .appointment-card p {
+            margin: 12px 0;
+            font-size: 1.05rem;
+            color: var(--text-color);
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .appointment-card strong {
+            color: var(--primary-color);
+            margin-right: 8px;
+            min-width: 120px;
+            display: inline-block;
+        }
+
+        .appointment-card p:last-child {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(0, 0, 0, 0.1);
+        }
+
+        .emergency-type {
+            display: inline-block;
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--primary-color);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin-left: 5px;
+        }
+
+        /* Loading animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            width: 100%;
+        }
+
+        .loading-circle {
+            width: 15px;
+            height: 15px;
+            margin: 0 5px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: inline-block;
+            animation: loading 1.5s infinite ease-in-out both;
+        }
+
+        .loading-circle:nth-child(1) {
+            animation-delay: -0.3s;
+        }
+
+        .loading-circle:nth-child(2) {
+            animation-delay: -0.15s;
+        }
+
+        @keyframes loading {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* Empty state styling */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #7f8c8d;
+            grid-column: 1 / -1;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+
+        .empty-state p {
+            font-size: 1.2rem;
+        }
+
+        /* Home button */
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .home-button a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .home-button a:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .appointment-container {
+                grid-template-columns: 1fr;
+                padding: 0 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .logo i {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .appointment-card {
+                padding: 20px 15px;
+            }
+            
+            .appointment-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .appointment-card p {
+                font-size: 0.95rem;
+                flex-direction: column;
+            }
+            
+            .appointment-card strong {
+                margin-bottom: 5px;
+            }
+            
+            .header {
+                padding: 15px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Button -->
+    <div class="home-button">
+        <a href="sample.html" title="Back to Home">
+            <i class="fas fa-home"></i>
+        </a>
+    </div>
+
+    <div class="header">
+        <div class="logo"><i class="fas fa-tooth"></i> Dental Heaven</div>
+        <h1>Emergency Request Appointments</h1>
+        <div class="emergency-badge">
+            <i class="fas fa-exclamation-triangle"></i> Priority Cases
+        </div>
+    </div>
+    
+    <div class="appointment-container" id="booked-appointments">
+        <div class="loading">
+            <div class="loading-circle"></div>
+            <div class="loading-circle"></div>
+            <div class="loading-circle"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js';
+        import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCoJ1zMRTCeigRdluv0jYtg8lpUuuBgTk4",
+            authDomain: "dental-heaven-72a84.firebaseapp.com",
+            databaseURL: "https://dental-heaven-72a84-default-rtdb.firebaseio.com",
+            projectId: "dental-heaven-72a84",
+            storageBucket: "dental-heaven-72a84.appspot.com",
+            messagingSenderId: "1027532780222",
+            appId: "1:1027532780222:web:a27f0c2bf662350061e4ef",
+            measurementId: "G-49M003EQP0"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const emergencyAppointmentsRef = ref(database, 'emergencyAppointments');
+
+        function displayAppointments() {
+            onValue(emergencyAppointmentsRef, (snapshot) => {
+                const data = snapshot.val();
+                const bookedAppointmentsDiv = document.getElementById('booked-appointments');
+                bookedAppointmentsDiv.innerHTML = '';
+
+                if (data) {
+                    Object.keys(data).forEach((key) => {
+                        const appointment = data[key];
+
+                        const appointmentHTML = `
+                            <div class="appointment-card">
+                                <h3>${appointment.name}</h3>
+                                <p><strong>Phone:</strong> ${appointment.phone}</p>
+                                <p>
+                                    <strong>Emergency Type:</strong> 
+                                    <span>${appointment.emergencyType}</span>
+                                    <span class="emergency-type">${appointment.emergencyType}</span>
+                                </p>
+                                <p><strong>Description:</strong> ${appointment.description}</p>
+                            </div>
+                        `;
+                        bookedAppointmentsDiv.innerHTML += appointmentHTML;
+                    });
+                } else {
+                    bookedAppointmentsDiv.innerHTML = `
+                        <div class="empty-state">
+                            <i class="far fa-calendar-times"></i>
+                            <p>No emergency appointments booked yet.</p>
+                        </div>
+                    `;
+                }
+            }, (error) => {
+                console.error("Error fetching appointments: ", error);
+                document.getElementById('booked-appointments').innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Error loading appointments. Please try again later.</p>
+                    </div>
+                `;
+            });
+        }
+
+        displayAppointments();
+    </script>
+</body>
+</html>

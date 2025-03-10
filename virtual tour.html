@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="sample.html">
+    <title>Virtual Tour - Dental Heaven</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00bcd4;
+            --secondary-color: #0097a7;
+            --accent-color: #ff4081;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: #ffffff;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #2c3e50;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: var(--primary-color);
+        }
+
+        .appointment-btn {
+            background-color: var(--primary-color);
+            color: white !important;
+            padding: 0.8rem 1.5rem !important;
+            border-radius: 25px;
+            transition: background-color 0.3s !important;
+        }
+
+        .appointment-btn:hover {
+            background-color: var(--secondary-color) !important;
+        }
+
+        /* Virtual Tour Styles */
+        .virtual-tour-container {
+            margin-top: 80px;
+            padding: 2rem;
+        }
+
+        .tour-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .tour-header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tour-header p {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tour-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tour-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tour-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .tour-image iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tour-content {
+            padding: 1.5rem;
+        }
+
+        .tour-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tour-content p {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .view-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+
+        .view-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .tour-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1001;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            height: 80vh;
+            margin: 30px auto;
+            background: transparent;
+        }
+
+        .modal-iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 10px;
+            top: -30px;
+            font-size: 30px;
+            cursor: pointer;
+            color: white;
+            z-index: 1002;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 3rem 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin: 0.5rem 0;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-links a {
+            color: white;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 1rem;
+            background: #111;
+        }
+
+        @media (max-width: 768px) {
+            .tour-grid {
+                padding: 1rem;
+            }
+        }
+
+        .additional-tours {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .additional-tours h2 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .tour-image iframe {
+            border: none;
+            border-radius: 10px 10px 0 0;
+        }
+
+        video:fullscreen {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo"><i class="fas fa-tooth"></i> Dental Heaven</div>
+        <ul class="nav-links">
+            <li><a href="sample.html">Home</a></li>
+            <li><a href="sample.html#services">Services</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="our team.html">Our Team</a></li>
+            <li><a href="sample.html#contact">Contact</a></li>
+            <li><a href="Schedule Your Visit.html" class="appointment-btn">Request Appointment</a></li>
+        </ul>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Virtual Tour Container -->
+    <div class="virtual-tour-container">
+        <div class="tour-header">
+            <h1>Welcome to Our Virtual Tour</h1>
+            <p>Experience our state-of-the-art dental facility from the comfort of your home. Explore our modern treatment rooms, waiting area, and advanced technology.</p>
+        </div>
+
+        <div class="tour-grid">
+            <div class="tour-card">
+                <div class="tour-image">
+                    <video width="100%" 
+                           height="250"
+                           controls
+                           onplay="handleVideoPlay(event)">
+                        <source src="virtual tour videos/Reception Area.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="tour-content">
+                    <h3>Reception Area</h3>
+                    <p>Our welcoming reception area is designed for your comfort, featuring modern amenities and a relaxing atmosphere.</p>
+                    <a href="#" class="view-btn" onclick="openTourModal('reception', event)">View Full Screen</a>
+                </div>
+            </div>
+
+            <div class="tour-card">
+                <div class="tour-image">
+                    <video width="100%" 
+                           height="250"
+                           controls
+                           onplay="handleVideoPlay(event)">
+                        <source src="virtual tour videos/Treatment Rooms.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="tour-content">
+                    <h3>Treatment Rooms</h3>
+                    <p>Experience our modern treatment rooms equipped with the latest dental technology for your comfort and care.</p>
+                    <a href="#" class="view-btn" onclick="openTourModal('treatment', event)">View Full Screen</a>
+                </div>
+            </div>
+
+            <div class="tour-card">
+                <div class="tour-image">
+                    <video width="100%" 
+                           height="250"
+                           controls
+                           onplay="handleVideoPlay(event)">
+                        <source src="virtual tour videos/Consultation Room.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="tour-content">
+                    <h3>Consultation Room</h3>
+                    <p>Our private consultation rooms provide a comfortable space to discuss your dental care needs.</p>
+                    <a href="#" class="view-btn" onclick="openTourModal('consultation', event)">View Full Screen</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Video Tours Section -->
+        <div class="additional-tours">
+            <h2>More Virtual Tours</h2>
+            <div class="tour-grid">
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <video width="100%" 
+                               height="250"
+                               controls
+                               onplay="handleVideoPlay(event)">
+                            <source src="virtual tour videos/Advanced Technology.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="tour-content">
+                        <h3>Advanced Technology</h3>
+                        <p>Discover our state-of-the-art dental equipment and technology.</p>
+                        <a href="#" class="view-btn" onclick="openTourModal('technology', event)">View Full Screen</a>
+                    </div>
+                </div>
+
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <video width="100%" 
+                               height="250"
+                               controls
+                               onplay="handleVideoPlay(event)">
+                            <source src="virtual tour videos/Complete Clinic Tour.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="tour-content">
+                        <h3>Complete Clinic Tour</h3>
+                        <p>Take a comprehensive tour of our entire dental facility.</p>
+                        <a href="#" class="view-btn" onclick="openTourModal('full-tour', event)">View Full Screen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tour Modal -->
+    <div id="tourModal" class="tour-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeTourModal()">&times;</span>
+            <iframe id="tourFrame" 
+                    class="modal-iframe" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Dental Heaven</h4>
+                <p>Creating beautiful smiles with advanced dental care.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="sample.html#services">Services</a></li>
+                    <li><a href="sample.html#plans">Plans</a></li>
+                    <li><a href="sample.html#contact">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2024 Dental Heaven. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function openTourModal(area, event) {
+            event.preventDefault();
+            const modal = document.getElementById('tourModal');
+            const iframe = document.getElementById('tourFrame');
+            
+            // Update video sources with URLs
+            const tourUrls = {
+                'reception': 'virtual tour videos/Reception Area.mp4',
+                'treatment': 'virtual tour videos/Treatment Rooms.mp4',
+                'consultation': 'virtual tour videos/Consultation Room.mp4',
+                'technology': 'virtual tour videos/Advanced Technology.mp4',
+                'full-tour': 'virtual tour videos/Complete Clinic Tour.mp4'
+            };
+
+            // Pause all videos on the page
+            const allVideos = document.querySelectorAll('video');
+            allVideos.forEach(v => {
+                v.pause();
+                v.currentTime = 0;
+            });
+
+            if (area === 'reception' || area === 'treatment' || area === 'consultation' || area === 'technology' || area === 'full-tour') {
+                // Create video element for fullscreen
+                iframe.style.display = 'none';
+                let video = document.createElement('video');
+                video.className = 'modal-iframe';
+                video.controls = true;
+                video.src = tourUrls[area];
+                
+                // Remove any existing modal video
+                let existingVideo = modal.querySelector('video');
+                if (existingVideo) {
+                    existingVideo.pause();
+                    existingVideo.remove();
+                }
+                
+                // Add the new video to the modal
+                const modalContent = modal.querySelector('.modal-content');
+                modalContent.appendChild(video);
+                
+                // Request fullscreen and play
+                video.play().then(() => {
+                    if (video.requestFullscreen) {
+                        video.requestFullscreen();
+                    } else if (video.webkitRequestFullscreen) { /* Safari */
+                        video.webkitRequestFullscreen();
+                    } else if (video.mozRequestFullScreen) { /* Firefox */
+                        video.mozRequestFullScreen();
+                    } else if (video.msRequestFullscreen) { /* IE/Edge */
+                        video.msRequestFullscreen();
+                    }
+                }).catch(function(error) {
+                    console.log("Video play failed:", error);
+                });
+            }
+            
+            // Show the modal
+            modal.style.display = 'block';
+            return false;
+        }
+
+        function closeTourModal() {
+            const modal = document.getElementById('tourModal');
+            
+            // Exit full screen if active
+            if (document.fullscreenElement) {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { /* Safari */
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) { /* Firefox */
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) { /* IE/Edge */
+                    document.msExitFullscreen();
+                }
+            }
+            
+            // Stop any playing videos
+            let existingVideo = modal.querySelector('video');
+            if (existingVideo) {
+                existingVideo.pause();
+                existingVideo.remove();
+            }
+            
+            modal.style.display = 'none';
+        }
+
+        // Add event listener for ESC key to close modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeTourModal();
+            }
+        });
+
+        // Add event listener for fullscreen change
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                closeTourModal();
+            }
+        });
+
+        // Add this function to handle the original video play
+        function handleVideoPlay(event) {
+            const currentVideo = event.target;
+            const allVideos = document.querySelectorAll('video');
+            
+            // Close any open modal
+            const modal = document.getElementById('tourModal');
+            if (modal.style.display === 'block') {
+                closeTourModal();
+            }
+            
+            // Pause all other videos
+            allVideos.forEach(video => {
+                if (video !== currentVideo) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Your Visit - Dental Heaven</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        :root {
+            --primary-color: #00bcd4;
+            --secondary-color: #0097a7;
+            --accent-color: #ff4081;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: #ffffff;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #2c3e50;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Scheduling Section Styles */
+        .schedule-container {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .schedule-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .schedule-header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .schedule-header p {
+            color: var(--text-color);
+            font-size: 1.2rem;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .appointment-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .info-section {
+            padding: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .emergency-contact {
+            background: var(--accent-color);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .emergency-contact h3 {
+            margin-bottom: 1rem;
+        }
+
+        .emergency-contact p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            margin-top: 3rem;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 3rem 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo"><i class="fas fa-tooth"></i> Dental Heaven</div>
+        <ul class="nav-links">
+            <li><a href="sample.html">Home</a></li>
+            <li><a href="sample.html#services">Services</a></li>
+            <li><a href="aboutus.html">Our Team</a></li>
+            <li><a href="virtual tour.html">Virtual Tour</a></li>
+            <li><a href="sample.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Scheduling Section -->
+    <div class="schedule-container">
+        <div class="schedule-header">
+            <h1>Schedule Your Visit</h1>
+            <p>Book your appointment with our experienced dental professionals</p>
+        </div>
+
+        <div class="schedule-grid">
+            <!-- Appointment Form -->
+            <div class="appointment-form">
+                <form id="appointmentForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Preferred Date *</label>
+                        <input type="text"
+                               id="date"
+                               required
+                               placeholder="dd/mm/yyyy"
+                               readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Preferred Time *</label>
+                        <select id="time" required>
+                            <option value="">Select Time</option>
+                            <option value="09:00">09:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                            <option value="17:00">05:00 PM</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Service Required *</label>
+                        <select id="service" required>
+                            <option value="">Select Service</option>
+                            <option value="general">General Check-up</option>
+                            <option value="cleaning">Teeth Cleaning</option>
+                            <option value="whitening">Teeth Whitening</option>
+                            <option value="filling">Dental Filling</option>
+                            <option value="root-canal">Root Canal</option>
+                            <option value="extraction">Tooth Extraction</option>
+                            <option value="implant">Dental Implants</option>
+                            <option value="braces">Braces Consultation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Additional Notes</label>
+                        <textarea id="notes" placeholder="Any specific concerns or requirements..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Schedule Appointment</button>
+                </form>
+                 <p id="message"></p>
+            </div>
+
+            <!-- Information Section -->
+            <div class="info-section">
+                <div class="info-card">
+                    <h3>Opening Hours</h3>
+                    <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <p>Saturday: 9:00 AM - 2:00 PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Location</h3>
+                    <p>Silk Mill, No: 27/4,</p>
+                    <p>1st East Main Rd,
+                        Suthanthira Ponvizha Nagar,Gandhi Nagar,</p>
+                    <p>Vellore, Tamil Nadu 632006</p>
+                </div>
+
+                <div class="emergency-contact">
+                    <h3>Emergency Dental Care</h3>
+                    <p>For dental emergencies outside regular hours:</p>
+                    <p><i class="fas fa-phone"></i> 0416 031 2263 </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Dental Heaven</h4>
+                <p>Creating beautiful smiles with advanced dental care.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2024 Dental Heaven. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js';
+        import { getDatabase, ref, push } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js';
+
+        // Your Firebase configuration (replace with your own config)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCoJ1zMRTCeigRdluv0jYtg8lpUuuBgTk4",
+  authDomain: "dental-heaven-72a84.firebaseapp.com",
+  databaseURL: "https://dental-heaven-72a84-default-rtdb.firebaseio.com",
+  projectId: "dental-heaven-72a84",
+  storageBucket: "dental-heaven-72a84.firebasestorage.app",
+  messagingSenderId: "1027532780222",
+  appId: "1:1027532780222:web:a27f0c2bf662350061e4ef",
+  measurementId: "G-49M003EQP0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Get a reference to the 'appointments' node
+        const appointmentsRef = ref(database, 'appointments');
+
+        // Function to write data to Firebase
+        function writeData(name, email, phone, date, time, service, notes) {
+            push(appointmentsRef, {
+                name: name,
+                email: email,
+                phone: phone,
+                date: date,
+                time: time,
+                service: service,
+                notes: notes
+            })
+            .then(() => {
+                // Optional: Reset form and display success message
+                document.getElementById('appointmentForm').reset();
+                document.getElementById('message').innerText = 'Appointment booked successfully!';
+                alert('Thank you! We will contact you shortly for your request appointment.');
+            })
+            .catch((error) => {
+                console.error("Error writing data to Firebase:", error);
+                document.getElementById('message').innerText = 'Error: Could not book appointment. Please try again.';
+            });
+        }
+
+        // Add event listener to the form
+        document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const service = document.getElementById('service').value;
+            const notes = document.getElementById('notes').value;
+
+            // Call the writeData function to save the data to Firebase
+            writeData(name, email, phone, date, time, service, notes);
+        });
+    </script>
+    <script>
+        // Initialize flatpickr
+        const dateInput = document.getElementById('date');
+        flatpickr(dateInput, {
+            dateFormat: "d/m/Y",
+            minDate: "today",
+            disableMobile: false,
+            allowInput: false,
+            locale: {
+                firstDayOfWeek: 1
+            },
+            onChange: function(selectedDates, dateStr, instance) {
+                // Validate selected date
+                if (selectedDates[0]) {
+                    const selected = selectedDates[0];
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    if (selected < today) {
+                        instance.clear();
+                        alert('Please select a future date');
+                    }
+                }
+            }
+        });
+
+        // Add custom styles for the date picker
+        const style = document.createElement('style');
+        style.textContent = `
+            .flatpickr-calendar {
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            }
+
+            .flatpickr-day.selected {
+                background: var(--primary-color);
+                border-color: var(--primary-color);
+            }
+
+            .flatpickr-day.today {
+                border-color: var(--primary-color);
+            }
+
+            .flatpickr-day:hover {
+                background: var(--light-gray);
+            }
+
+            .flatpickr-current-month {
+                color: var(--primary-color);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment QR Code - Dental Heaven</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00bcd4;
+            --secondary-color: #0097a7;
+            --accent-color: #ff4081;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --info-color: #2196f3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        .header h1::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--accent-color);
+            bottom: -10px;
+            left: 25%;
+            border-radius: 2px;
+        }
+
+        .header p {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .payment-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            padding: 3rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .payment-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .payment-card {
+            background: var(--light-gray);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .payment-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .qr-code {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px dashed var(--primary-color);
+        }
+
+        .qr-code::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, transparent, rgba(0,188,212,0.1), transparent);
+            animation: shine 3s infinite linear;
+            z-index: 0;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .qr-code:hover img {
+            transform: scale(1.05);
+        }
+
+        .payment-info {
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: white;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .payment-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        .payment-info h3::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .user-details {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--info-color);
+        }
+
+        .user-details p {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .user-details span {
+            font-weight: normal;
+            color: var(--secondary-color);
+        }
+
+        .payment-info p {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .payment-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            background: rgba(0,188,212,0.05);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .payment-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 0.5rem;
+            border-bottom: 1px dashed rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .payment-features li:last-child {
+            border-bottom: none;
+        }
+
+        .payment-features li:hover {
+            transform: translateX(5px);
+        }
+
+        .payment-features li i {
+            color: var(--success-color);
+            font-size: 1.2rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,188,212,0.3);
+            margin-top: 1rem;
+        }
+
+        .download-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,188,212,0.4);
+        }
+
+        .download-btn i {
+            margin-right: 8px;
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .home-button a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .home-button a:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .security-badge {
+            display: inline-block;
+            background: rgba(76,175,80,0.1);
+            color: var(--success-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            border: 1px solid rgba(76,175,80,0.2);
+        }
+
+        .security-badge i {
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .payment-section {
+                padding: 2rem;
+            }
+
+            .qr-code {
+                width: 180px;
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+
+            .payment-section {
+                padding: 1.5rem;
+            }
+
+            .qr-code {
+                width: 150px;
+                height: 150px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Button -->
+    <div class="home-button">
+        <a href="sample.html" title="Back to Home">
+            <i class="fas fa-home"></i>
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Payment QR Code</h1>
+            <p>Scan the QR code to complete your payment securely</p>
+        </div>
+
+        <div class="payment-section">
+            <div class="payment-card">
+                <div class="qr-code">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=dentalheaven@upi&pn=Dental%20Heaven&am=999&cu=INR" alt="Payment QR Code">
+                </div>
+                <!-- Add this script to handle payment data -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Check if payment details exist
+                        const paymentData = sessionStorage.getItem('paymentFormData');
+                        
+                        if (!paymentData) {
+                            alert('Please complete payment details first');
+                            window.location.href = 'sample.html#plans';
+                            return;
+                        }
+                        
+                        try {
+                            // Parse and display user details
+                            const userData = JSON.parse(paymentData);
+                            
+                            // Update user details in the payment info section
+                            document.getElementById('userName').textContent = userData.name || 'Not provided';
+                            document.getElementById('userPhone').textContent = userData.phone || 'Not provided';
+                            
+                            console.log('Payment data loaded:', userData);
+                        } catch (error) {
+                            console.error('Error processing payment data:', error);
+                            alert('There was an error processing your payment details. Please try again.');
+                            window.location.href = 'sample.html#plans';
+                        }
+                    });
+                </script>
+                
+                <div class="payment-info">
+                    <h3>Payment Details</h3>
+                    <div class="user-details">
+                        <p>Name: <span id="userName"></span></p>
+                        <p>Phone: <span id="userPhone"></span></p>
+                    </div>
+                    <h3>UPI Payment</h3>
+                    <p>Scan this QR code with any UPI payment app to complete your payment</p>
+                    <ul class="payment-features">
+                        <li><i class="fas fa-check-circle"></i> Secure Payment</li>
+                        <li><i class="fas fa-check-circle"></i> Instant Confirmation</li>
+                        <li><i class="fas fa-check-circle"></i> Multiple UPI Apps Supported</li>
+                    </ul>
+                    <div class="security-badge">
+                        <i class="fas fa-shield-alt"></i> 100% Secure Payment
+                    </div>
+                    <a href="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=dentalheaven@upi&pn=Dental%20Heaven&am=999&cu=INR" download="payment-qr.png" class="download-btn">
+                        <i class="fas fa-download"></i> Download QR Code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

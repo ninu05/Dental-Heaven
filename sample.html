@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="sample.html">
+    <title>Dental Heaven</title>
+    <link rel="stylesheet" href="sample.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo"><i class="fas fa-tooth"></i> Dental Heaven</div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="our team.html">Our Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="Schedule Your Visit(Backend).html" class="appointment-btn">Request Appointment</a></li>
+        </ul>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Welcome to Dental Heaven</h1>
+        <p>Where Advanced Technology Meets Comfortable Care</p>
+        <div class="hero-buttons">
+            <button class="cta-button" onclick="window.location.href='Schedule Your Visit(Backend).html'">Schedule Your Visit</button>
+            <button class="cta-button secondary" onclick="window.location.href='virtual tour.html'">Virtual Tour</button>
+        </div>
+        <div class="hero-features">
+            <div class="feature">
+                <i class="fas fa-calendar-check"></i>
+                <span><a href="Same Day Appointments(backend).html" style="text-decoration: none; color: inherit;">Same Day Appointments</a></span>
+            </div>
+            <div class="feature">
+                <i class="fas fa-credit-card"></i>
+                <span><a href="#plans" style="text-decoration: none; color: inherit;">Flexible Payment Plans</a></span>
+            </div>
+            <div class="feature">
+                <i class="fas fa-star"></i>
+                <span onclick="openRatingModal()" style="cursor: pointer;">5-Star Rated</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2>Our Comprehensive Services</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95" alt="General Dentistry">
+                <h3>General Dentistry</h3>
+                <p>Complete dental care for the whole family</p>
+                <ul class="service-features">
+                    <li>Regular Checkups</li>
+                    <li>Professional Cleaning</li>
+                    <li>Cavity Treatment</li>
+                    <li>Emergency Care</li>
+                </ul>
+                <button class="learn-more-btn" onclick="openModal('general-modal')">Learn More</button>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1541604193435-22287d32c2c2" alt="Cosmetic Dentistry">
+                <h3>Cosmetic Dentistry</h3>
+                <p>Transform your smile with our aesthetic treatments</p>
+                <ul class="service-features">
+                    <li>Teeth Whitening</li>
+                    <li>Porcelain Veneers</li>
+                    <li>Dental Bonding</li>
+                    <li>Smile Makeovers</li>
+                </ul>
+                <button class="learn-more-btn" onclick="openModal('cosmetic-modal')">Learn More</button>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe" alt="Orthodontics">
+                <h3>Orthodontics</h3>
+                <p>Straighten your teeth for a perfect smile</p>
+                <ul class="service-features">
+                    <li>Traditional Braces</li>
+                    <li>Clear Aligners</li>
+                    <li>Invisalign</li>
+                    <li>Retainers</li>
+                </ul>
+                <button class="learn-more-btn" onclick="openModal('ortho-modal')">Learn More</button>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118" alt="Dental Implants">
+                <h3>Dental Implants</h3>
+                <p>Permanent solution for missing teeth</p>
+                <ul class="service-features">
+                    <li>Single Tooth Implants</li>
+                    <li>Full Arch Restoration</li>
+                    <li>3D Guided Surgery</li>
+                    <li>Lifetime Warranty</li>
+                </ul>
+                <button class="learn-more-btn" onclick="openModal('implant-modal')">Learn More</button>
+            </div>
+        </div>
+
+        <!-- Modal Popups -->
+        <div id="general-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('general-modal')">&times;</span>
+                <h3>General Dentistry Services</h3>
+                <div class="modal-body">
+                    <p>Our comprehensive general dentistry services include:</p>
+                    <ul>
+                        <li>Routine Dental Checkups & Cleanings</li>
+                        <li>Digital X-rays & Diagnostics</li>
+                        <li>Cavity Detection & Fillings</li>
+                        <li>Gum Disease Treatment</li>
+                        <li>Root Canal Therapy</li>
+                        <li>Tooth Extractions</li>
+                        <li>Emergency Dental Care</li>
+                        <li>Dental Sealants & Fluoride</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="cosmetic-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('cosmetic-modal')">&times;</span>
+                <h3>Cosmetic Dentistry Services</h3>
+                <div class="modal-body">
+                    <p>Transform your smile with our cosmetic treatments:</p>
+                    <ul>
+                        <li>Professional Teeth Whitening</li>
+                        <li>Porcelain Veneers</li>
+                        <li>Dental Bonding</li>
+                        <li>Tooth-Colored Fillings</li>
+                        <li>Crown Lengthening</li>
+                        <li>Smile Makeovers</li>
+                        <li>Gum Contouring</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="ortho-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('ortho-modal')">&times;</span>
+                <h3>Orthodontic Services</h3>
+                <div class="modal-body">
+                    <p>Achieve a straighter smile with our orthodontic options:</p>
+                    <ul>
+                        <li>Traditional Metal Braces</li>
+                        <li>Ceramic Braces</li>
+                        <li>Invisalign Clear Aligners</li>
+                        <li>Clear Correct Aligners</li>
+                        <li>Retainers</li>
+                        <li>Early Orthodontic Treatment</li>
+                        <li>Surgical Orthodontics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="implant-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('implant-modal')">&times;</span>
+                <h3>Dental Implant Services</h3>
+                <div class="modal-body">
+                    <p>Restore your smile with our advanced implant solutions:</p>
+                    <ul>
+                        <li>Single Tooth Implants</li>
+                        <li>Multiple Tooth Implants</li>
+                        <li>Full Arch Restoration</li>
+                        <li>All-on-4 Implants</li>
+                        <li>3D Guided Implant Surgery</li>
+                        <li>Implant-Supported Dentures</li>
+                        <li>Bone Grafting</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="why-us">
+        <h2>Why Choose Dental Heaven</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-microscope"></i>
+                <h3>Latest Technology</h3>
+                <p>3D scanning and digital impressions for precise treatment</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-couch"></i>
+                <h3>Comfort First</h3>
+                <p>Sedation options and comfort amenities available</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-certificate"></i>
+                <h3>Experienced Team</h3>
+                <p>Over 20 years of combined experience</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-clock"></i>
+                <h3>Extended Hours</h3>
+                <p>Early morning and weekend appointments</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="plans">
+        <h2>Dental Plans & Special Offers</h2>
+        <div class="plan-grid">
+            <div class="plan-card">
+                <h3>New Patient Exam</h3>
+                <p class="price">₹999</p>
+                <ul>
+                    <li>Comprehensive Exam</li>
+                    <li>Digital X-rays</li>
+                    <li>Professional Cleaning</li>
+                    <li>Treatment Consultation</li>
+                </ul>
+                <div class="payment-info">
+                    <p class="validity">Valid for first-time patients only</p>
+                    <p class="requirements">* Bring valid ID proof</p>
+                </div>
+                <button onclick="openPaymentModal('new-patient')">Book Now - Pay ₹999</button>
+            </div>
+
+            <div class="plan-card featured">
+                <h3>Smile Makeover</h3>
+                <p class="price">Save 15%</p>
+                <ul>
+                    <li>Cosmetic Consultation</li>
+                    <li>Digital Smile Design</li>
+                    <li>Treatment Planning</li>
+                    <li>Financing Options</li>
+                </ul>
+                <div class="payment-info">
+                    <p class="emi">EMI options available</p>
+                    <p class="requirements">* Free initial consultation</p>
+                </div>
+                <button onclick="openPaymentModal('smile-makeover')">Schedule Consultation</button>
+            </div>
+
+            <div class="plan-card">
+                <h3>Family Plan</h3>
+                <p class="price">20% OFF</p>
+                <ul>
+                    <li>Family Dental Checkups</li>
+                    <li>Preventive Care</li>
+                    <li>Children's Dentistry</li>
+                    <li>Family Discount</li>
+                </ul>
+                <div class="payment-info">
+                    <p class="validity">Valid for up to 4 family members</p>
+                    <p class="requirements">* Annual subscription available</p>
+                </div>
+                <button onclick="openPaymentModal('family-plan')">Enroll Now</button>
+            </div>
+
+            <div class="plan-card premium">
+                <div class="plan-badge">Most Popular</div>
+                <h3>Premium Care Plan</h3>
+                <p class="price">From ₹2,999/year</p>
+                <ul>
+                    <li>2 Annual Checkups</li>
+                    <li>2 Professional Cleanings</li>
+                    <li>20% Off All Treatments</li>
+                    <li>Free Emergency Visits</li>
+                    <li>Priority Scheduling</li>
+                </ul>
+                <div class="payment-info">
+                    <p class="emi">EMI available | 0% interest</p>
+                    <p class="requirements">* 1-year commitment required</p>
+                </div>
+                <button onclick="openPaymentModal('premium-plan')">Join Now</button>
+            </div>
+        </div>
+
+        <!-- Payment Modal -->
+        <div id="paymentModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closePaymentModal()">&times;</span>
+                <h3>Payment Details</h3>
+                <!-- In the payment modal section -->
+                <div class="payment-form">
+                    <form id="paymentForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="payment-input" required pattern="[A-Za-z\s]+" title="Please enter a valid name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="payment-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="payment-input" required pattern="[0-9]{10}" title="Please enter a 10-digit phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="payment-method">Payment Method</label>
+                            <select id="payment-method" class="payment-input" required>
+                                <option value="">Select Payment Method</option>
+                                <option value="upi">UPI</option>
+                                <option value="card">Credit/Debit Card</option>
+                                <option value="netbanking">Net Banking</option>
+                                <option value="emi">EMI</option>
+                            </select>
+                        </div>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                            <i class="fab fa-google-pay"></i>
+                            <i class="fab fa-apple-pay"></i>
+                        </div>
+                        <button type="submit" id="proceedToPayment" class="payment-submit-btn">
+                            Proceed to Payment
+                        </button>
+                    </form>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const paymentForm = document.getElementById('paymentForm');
+                        
+                        paymentForm.addEventListener('submit', function(e) {
+                            e.preventDefault();
+                            
+                            // Get form values
+                            const formData = {
+                                name: document.getElementById('name').value,
+                                email: document.getElementById('email').value,
+                                phone: document.getElementById('phone').value,
+                                paymentMethod: document.getElementById('payment-method').value
+                            };
+                    
+                            // Validate form
+                            if (!formData.name || !formData.email || !formData.phone || !formData.paymentMethod) {
+                                alert('Please fill in all fields');
+                                return;
+                            }
+                    
+                            // Store data and redirect
+                            sessionStorage.setItem('paymentFormData', JSON.stringify(formData));
+                            window.location.href = 'QR Code.html';
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+
+        <style>
+            .plan-card {
+                position: relative;
+                padding: 2rem;
+                border-radius: 15px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                background: white;
+                transition: transform 0.3s;
+            }
+
+            .plan-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .payment-info {
+                margin: 1rem 0;
+                font-size: 0.9rem;
+                color: #666;
+            }
+
+            .validity, .emi {
+                color: var(--primary-color);
+                font-weight: bold;
+            }
+
+            .requirements {
+                font-style: italic;
+                margin-top: 0.5rem;
+            }
+
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 1000;
+            }
+
+            .modal-content {
+                background: white;
+                padding: 2rem;
+                border-radius: 15px;
+                max-width: 500px;
+                margin: 2rem auto;
+                position: relative;
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                color: #333;
+            }
+
+            .form-group input,
+            .form-group select {
+                width: 100%;
+                padding: 0.8rem;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                font-size: 1rem;
+            }
+
+            .payment-icons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                margin: 1rem 0;
+                font-size: 2rem;
+                color: #666;
+            }
+
+            .payment-submit-btn {
+                width: 100%;
+                padding: 1rem;
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1.1rem;
+                cursor: pointer;
+                transition: background 0.3s;
+            }
+
+            .payment-submit-btn:hover {
+                background: var(--secondary-color);
+            }
+        </style>
+
+        <script>
+            function openPaymentModal(planType) {
+                document.getElementById('paymentModal').style.display = 'block';
+            }
+
+            function closePaymentModal() {
+                document.getElementById('paymentModal').style.display = 'none';
+            }
+
+            function handlePayment(event) {
+                event.preventDefault();
+                // Here you would typically integrate with a payment gateway
+                alert('Payment processing will be integrated with a payment gateway.');
+                closePaymentModal();
+            }
+        </script>
+    </section>
+
+    <!-- Insurance Section -->
+    <section id="insurance" class="insurance">
+        <h2>Insurance & Payment Options</h2>
+        <div class="insurance-logos">
+            <!-- Add insurance company logos here -->
+        </div>
+        <p>We accept most major insurance plans and offer flexible payment options</p>
+        <div class="payment-options">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-amex"></i>
+            <i class="fab fa-cc-discover"></i>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Schedule Your Visit</h2>
+        <div class="contact-info">
+            <p><i class="fas fa-phone"></i> 0416 031 2263</p>
+            <p><i class="fas fa-envelope"></i> smile@dentalheaven.com</p>
+            <p><i class="fas fa-location-dot"></i> Silk Mill, No: 27/4,<br> 1st East Main Rd,<br> Suthanthira Ponvizha Nagar,Gandhi Nagar,<br> Vellore, Tamil Nadu 632006</p>
+            <p><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM | Sat: 9AM-2PM</p>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map" class="map">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5909047493745!2d79.13022867507825!3d12.933754987388435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bad38e3b8f5e8a9%3A0xb6c46bf90e0e37c8!2sSilk%20Mill%2C%201st%20East%20Main%20Rd%2C%20Gandhi%20Nagar%2C%20Vellore%2C%20Tamil%20Nadu%20632006!5e0!3m2!1sen!2sin!4v1709774123456!5m2!1sen!2sin"
+            width="100%" 
+            height="450" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </section>
+
+    <!-- Add Location Details -->
+    <section class="location-details">
+        <div class="container">
+            <div class="location-info">
+                <h3><i class="fas fa-map-marker-alt"></i> Our Location</h3>
+                <p>Silk Mill, No: 27/4, 1st East Main Rd</p>
+                <p>Suthanthira Ponvizha Nagar, Gandhi Nagar</p>
+                <p>Vellore, Tamil Nadu 632006</p>
+                <div class="direction-links">
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Silk+Mill,+No:+27/4,+1st+East+Main+Rd,+Suthanthira+Ponvizha+Nagar,+Gandhi+Nagar,+Vellore,+Tamil+Nadu+632006" 
+                       target="_blank" 
+                       class="direction-btn">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .map {
+            padding: 20px;
+            background: #f9f9f9;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 450px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .location-details {
+            padding: 2rem 0;
+            background: #f9f9f9;
+        }
+
+        .location-info {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .location-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .location-info h3 i {
+            margin-right: 10px;
+        }
+
+        .location-info p {
+            margin: 0.5rem 0;
+            color: #666;
+        }
+
+        .direction-links {
+            margin-top: 1.5rem;
+        }
+
+        .direction-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+
+        .direction-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .direction-btn i {
+            margin-right: 8px;
+        }
+    </style>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Dental Heaven</h4>
+                <p>Creating beautiful smiles with advanced dental care.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#plans">Plans</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2024 Dental Heaven. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+    </script>
+    <script src="sample.js"></script>
+
+    <!-- Rating Modal -->
+    <div id="ratingModal" class="modal">
+        <div class="modal-content rating-modal">
+            <span class="close-btn" onclick="closeRatingModal()">&times;</span>
+            <h3>Rate Your Experience</h3>
+            
+            <div class="rating-container">
+                <div class="star-rating" id="starRating">
+                    <i class="far fa-star" data-rating="1" onmouseover="highlightStars(1)" onclick="setRating(1)"></i>
+                    <i class="far fa-star" data-rating="2" onmouseover="highlightStars(2)" onclick="setRating(2)"></i>
+                    <i class="far fa-star" data-rating="3" onmouseover="highlightStars(3)" onclick="setRating(3)"></i>
+                    <i class="far fa-star" data-rating="4" onmouseover="highlightStars(4)" onclick="setRating(4)"></i>
+                    <i class="far fa-star" data-rating="5" onmouseover="highlightStars(5)" onclick="setRating(5)"></i>
+                </div>
+                <p id="ratingText">Click to rate</p>
+            </div>
+
+            <form id="ratingForm" onsubmit="submitRating(event)" style="display: none;">
+                <div class="form-group">
+                    <label for="reviewText">Your Feedback (Optional)</label>
+                    <textarea id="reviewText" rows="4" placeholder="Tell us about your experience..."></textarea>
+                </div>
+                <button type="submit" class="submit-rating-btn">Submit Rating</button>
+            </form>
+
+            <div id="thankYouMessage" style="display: none;">
+                <h4>Thank You for Your Rating!</h4>
+                <p>Your feedback helps us improve our service.</p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .rating-modal {
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .rating-container {
+            margin: 2rem 0;
+        }
+
+        .star-rating {
+            font-size: 2.5rem;
+            color: #ffd700;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .star-rating i {
+            margin: 0 0.2rem;
+            transition: transform 0.2s;
+        }
+
+        .star-rating i:hover {
+            transform: scale(1.2);
+        }
+
+        #ratingText {
+            color: #666;
+            margin-top: 1rem;
+        }
+
+        .submit-rating-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-rating-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        #thankYouMessage {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        #thankYouMessage h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+    </style>
+
+    <script>
+        let currentRating = 0;
+
+        function openRatingModal() {
+            document.getElementById('ratingModal').style.display = 'block';
+            resetRatingForm();
+        }
+
+        function closeRatingModal() {
+            document.getElementById('ratingModal').style.display = 'none';
+        }
+
+        function highlightStars(rating) {
+            const stars = document.querySelectorAll('.star-rating i');
+            const ratingTexts = {
+                1: "Poor",
+                2: "Fair",
+                3: "Good",
+                4: "Very Good",
+                5: "Excellent"
+            };
+
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.remove('far');
+                    star.classList.add('fas');
+                } else {
+                    star.classList.remove('fas');
+                    star.classList.add('far');
+                }
+            });
+
+            document.getElementById('ratingText').textContent = ratingTexts[rating] || "Click to rate";
+        }
+
+        function setRating(rating) {
+            currentRating = rating;
+            highlightStars(rating);
+            document.getElementById('ratingForm').style.display = 'block';
+        }
+
+        function submitRating(event) {
+            event.preventDefault();
+            const feedback = document.getElementById('reviewText').value;
+            
+            // Here you would typically send the rating and feedback to your backend
+            console.log('Rating:', currentRating, 'Feedback:', feedback);
+
+            // Show thank you message
+            document.getElementById('ratingForm').style.display = 'none';
+            document.getElementById('starRating').style.display = 'none';
+            document.getElementById('ratingText').style.display = 'none';
+            document.getElementById('thankYouMessage').style.display = 'block';
+
+            // Close modal after delay
+            setTimeout(() => {
+                closeRatingModal();
+                resetRatingForm();
+            }, 2000);
+        }
+
+        function resetRatingForm() {
+            currentRating = 0;
+            highlightStars(0);
+            document.getElementById('ratingForm').style.display = 'none';
+            document.getElementById('starRating').style.display = 'block';
+            document.getElementById('ratingText').style.display = 'block';
+            document.getElementById('thankYouMessage').style.display = 'none';
+            document.getElementById('reviewText').value = '';
+        }
+    </script>
+</body>
+</html>

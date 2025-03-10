@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="sample.html">
+    <title>Our Team - Dental Heaven</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Add base styles from sample.html */
+        :root {
+            --primary-color: #00bcd4;
+            --secondary-color: #0097a7;
+            --accent-color: #ff4081;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: #ffffff;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #2c3e50;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: var(--primary-color);
+        }
+
+        .appointment-btn {
+            background-color: var(--primary-color);
+            color: white !important;
+            padding: 0.8rem 1.5rem !important;
+            border-radius: 25px;
+            transition: background-color 0.3s !important;
+        }
+
+        .appointment-btn:hover {
+            background-color: var(--secondary-color) !important;
+        }
+
+        /* Existing team styles */
+        .team-section {
+            max-width: 1200px;
+            margin: 80px auto 0; /* Added top margin to account for fixed nav */
+            padding: 40px 20px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .team-member h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .team-member p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 3rem 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin: 0.5rem 0;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-links a {
+            color: white;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 1rem;
+            background: #111;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo"><i class="fas fa-tooth"></i> Dental Heaven</div>
+        <ul class="nav-links">
+            <li><a href="sample.html">Home</a></li>
+            <li><a href="sample.html#services">Services</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="our team.html" class="active">Our Team</a></li>
+            <li><a href="sample.html#contact">Contact</a></li>
+            <li><a href="Schedule Your Visit.html" class="appointment-btn">Request Appointment</a></li>
+        </ul>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div class="team-section">
+        <h1>Meet Our Team</h1>
+        <p class="intro">At Dental Heaven, our experienced team is dedicated to providing you with the highest quality dental care in a comfortable and welcoming environment.</p>
+        
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200" alt="Dr. Sarah Johnson">
+                <h3>Dr. Sarah Johnson</h3>
+                <p class="title">Lead Dentist</p>
+                <p>Dr. Johnson has over 15 years of experience in general and cosmetic dentistry. She is passionate about creating beautiful, healthy smiles.</p>
+            </div>
+
+            <div class="team-member">
+                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=200" alt="Dr. Michael Chen">
+                <h3>Dr. Michael Chen</h3>
+                <p class="title">Associate Dentist</p>
+                <p>Specializing in restorative dentistry, Dr. Chen brings innovative techniques and a gentle approach to patient care.</p>
+            </div>
+
+            <div class="team-member">
+                <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=200" alt="Emma Williams">
+                <h3>Emma Williams</h3>
+                <p class="title">Dental Hygienist</p>
+                <p>With her friendly demeanor and expertise, Emma ensures our patients maintain optimal oral health through preventive care.</p>
+            </div>
+
+            <div class="team-member">
+                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=200" alt="James Rodriguez">
+                <h3>James Rodriguez</h3>
+                <p class="title">Dental Assistant</p>
+                <p>James's attention to detail and caring nature help make every patient's visit comfortable and pleasant.</p>
+            </div>
+
+            <div class="team-member">
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200" alt="Lisa Thompson">
+                <h3>Lisa Thompson</h3>
+                <p class="title">Office Manager</p>
+                <p>Lisa ensures smooth operations and helps patients with scheduling, insurance, and any administrative needs.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Dental Heaven</h4>
+                <p>Creating beautiful smiles with advanced dental care.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="sample.html#services">Services</a></li>
+                    <li><a href="sample.html#plans">Plans</a></li>
+                    <li><a href="sample.html#contact">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2024 Dental Heaven. All rights reserved.</p>
+    </footer>
+</body>
+</html>

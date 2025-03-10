@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="sample.html">
+    <title>About Us - Dental Heaven</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url('https://images.unsplash.com/photo-1629909613654-28e377c37b09');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 70vh;
+            position: relative;
+        }
+
+        .about-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-hero p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+
+        .about-story {
+            padding: 5rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .story-content {
+            padding-right: 2rem;
+        }
+
+        .story-content p {
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+
+        .story-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .our-values {
+            background-color: var(--light-gray);
+            padding: 5rem 2rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .value-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .team-card {
+            text-align: center;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .team-card h3 {
+            margin: 1rem 0 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .team-social {
+            padding: 1rem;
+        }
+
+        .team-social a {
+            color: #666;
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .team-social a:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .about-story {
+                grid-template-columns: 1fr;
+                padding: 2rem 1rem;
+            }
+
+            .story-content {
+                padding-right: 0;
+            }
+
+            .team-grid {
+                padding: 1rem;
+            }
+        }
+
+        /* Base styles needed from main CSS */
+        :root {
+            --primary-color: #00bcd4;
+            --secondary-color: #0097a7;
+            --accent-color: #ff4081;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: #ffffff;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #2c3e50;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: var(--primary-color);
+        }
+
+        .appointment-btn {
+            background-color: var(--primary-color);
+            color: white !important;
+            padding: 0.8rem 1.5rem !important;
+            border-radius: 25px;
+            transition: background-color 0.3s !important;
+        }
+
+        .appointment-btn:hover {
+            background-color: var(--secondary-color) !important;
+        }
+
+        /* Hero Section Base Styles */
+        .hero {
+            height: 60vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 3rem 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin: 0.5rem 0;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-links a {
+            color: white;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 1rem;
+            background: #111;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Enhanced Quick Access Cards */
+        .quick-access {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: -100px auto 0;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .quick-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .quick-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .quick-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            background: var(--light-gray);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .quick-card:hover i {
+            background: var(--primary-color);
+            color: white;
+            transform: rotateY(360deg);
+        }
+
+        .quick-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-card p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .quick-access {
+                grid-template-columns: repeat(2, 1fr);
+                margin-top: -50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-hero p {
+                font-size: 1.2rem;
+            }
+
+            .quick-access {
+                grid-template-columns: 1fr;
+                margin-top: 2rem;
+                padding: 0 1rem;
+            }
+
+            .quick-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* Animation for numbers */
+        @keyframes countUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .quick-card {
+            animation: countUp 0.8s ease-out forwards;
+        }
+
+        .quick-card:nth-child(1) { animation-delay: 0.2s; }
+        .quick-card:nth-child(2) { animation-delay: 0.4s; }
+        .quick-card:nth-child(3) { animation-delay: 0.6s; }
+        .quick-card:nth-child(4) { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo"><i class="fas fa-tooth"></i> Dental Heaven</div>
+        <ul class="nav-links">
+            <li><a href="sample.html">Home</a></li>
+            <li><a href="sample.html#services">Services</a></li>
+            <li><a href="aboutus.html" class="active">About Us</a></li>
+            <li><a href="our team.html">Our Team</a></li>
+            <li><a href="sample.html#contact">Contact</a></li>
+            <li><a href="Schedule Your Visit.html" class="appointment-btn">Request Appointment</a></li>
+        </ul>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section class="hero about-hero">
+        <h1>About Dental Heaven</h1>
+        <p>Excellence in Dental Care Since 2000</p>
+    </section>
+
+    <!-- Quick Access Cards -->
+    <div class="quick-access">
+        <div class="quick-card">
+            <i class="fas fa-history"></i>
+            <h3>20+ Years</h3>
+            <p>Of Excellence</p>
+        </div>
+        <div class="quick-card">
+            <i class="fas fa-users"></i>
+            <h3>10,000+</h3>
+            <p>Happy Patients</p>
+        </div>
+        <div class="quick-card">
+            <i class="fas fa-award"></i>
+            <h3>50+</h3>
+            <p>Awards Won</p>
+        </div>
+        <div class="quick-card">
+            <i class="fas fa-user-md"></i>
+            <h3>15+</h3>
+            <p>Expert Dentists</p>
+        </div>
+    </div>
+
+    <!-- Our Story Section -->
+    <section class="about-story">
+        <div class="story-content">
+            <h2>Our Story</h2>
+            <p>Founded in 2000, Dental Heaven has been at the forefront of dental innovation and patient care. What started as a small practice has grown into one of the most trusted dental care providers in the region.</p>
+            <p>Our commitment to utilizing the latest technology, combined with our patient-first approach, has helped us transform thousands of smiles and lives.</p>
+        </div>
+        <div class="story-image">
+            <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67" alt="Dental Office">
+        </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="our-values">
+        <h2>Our Core Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <i class="fas fa-heart"></i>
+                <h3>Patient First</h3>
+                <p>Your comfort and satisfaction are our top priorities.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-star"></i>
+                <h3>Excellence</h3>
+                <p>We strive for excellence in every procedure.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Safety</h3>
+                <p>Maintaining the highest standards of safety and sterilization.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Innovation</h3>
+                <p>Continuous learning and adaptation of new technologies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="our-team">
+        <h2>Meet Our Expert Team</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7" alt="Dr. Sarah Johnson">
+                <h3>Dr. Sarah Johnson</h3>
+                <p>Lead Dentist</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d" alt="Dr. Michael Chen">
+                <h3>Dr. Michael Chen</h3>
+                <p>Orthodontist</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2" alt="Dr. Emily Martinez">
+                <h3>Dr. Emily Martinez</h3>
+                <p>Cosmetic Specialist</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Dental Heaven</h4>
+                <p>Creating beautiful smiles with advanced dental care.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="sample.html#services">Services</a></li>
+                    <li><a href="sample.html#plans">Plans</a></li>
+                    <li><a href="sample.html#contact">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2024 Dental Heaven. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Redirect to home page when browser refresh button is clicked
+        window.onbeforeunload = function() {
+            window.location.href = 'project eg.html';
+        }
+
+        // Handle F5 key press
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
+                e.preventDefault();
+                window.location.href = 'project eg.html';
+            }
+        });
+
+        // Handle mobile swipe down refresh
+        let touchstartY = 0;
+        document.addEventListener('touchstart', e => {
+            touchstartY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchmove', e => {
+            const touchY = e.touches[0].clientY;
+            const touchDiff = touchY - touchstartY;
+            
+            if (touchDiff > 100 && window.scrollY === 0) {
+                e.preventDefault();
+                window.location.href = 'project eg.html';
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>

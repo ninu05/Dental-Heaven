@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Same Day Appointments - Dental Heaven</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00bcd4;
+            --secondary-color: #0097a7;
+            --accent-color: #ff4081;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80') center/cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .emergency-section {
+            background: var(--light-gray);
+            padding: 50px 0;
+        }
+
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .emergency-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .emergency-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .emergency-card i {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .appointment-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .benefits {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .benefit-card {
+            padding: 20px;
+            border-radius: 10px;
+            background: var(--light-gray);
+        }
+
+        .benefit-card i {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .appointment-form {
+                padding: 20px;
+            }
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .home-button a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .home-button a:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+
+        }
+
+        .home-button i {
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .home-button {
+                top: 10px;
+                left: 10px;
+            }
+
+            .home-button a {
+                width: 40px;
+                height: 40px;
+            }
+
+            .home-button i {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Add Home/Back Button -->
+    <div class="home-button">
+        <a href="sample.html#home" title="Back to Home">
+            <i class="fas fa-home"></i>
+        </a>
+    </div>
+
+    <div class="header">
+        <h1>Same Day Emergency Dental Appointments</h1>
+        <p>Quick Relief for Dental Emergencies - We're Here When You Need Us</p>
+    </div>
+
+    <section class="emergency-section">
+        <div class="container">
+            <div class="emergency-grid">
+                <div class="emergency-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Call Us Now</h3>
+                    <p>Emergency Line: 0416 031 2263</p>
+                    <p>Available 24/7 for dental emergencies</p>
+                </div>
+                <div class="emergency-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Quick Response</h3>
+                    <p>Same-day appointments available</p>
+                    <p>Mon-Fri: 8AM-6PM | Sat: 9AM-2PM</p>
+                </div>
+                <div class="emergency-card">
+                    <i class="fas fa-tooth"></i>
+                    <h3>Emergency Services</h3>
+                    <p>Immediate care for:</p>
+                    <ul>
+                        <li>Severe Toothache</li>
+                        <li>Broken/Chipped Teeth</li>
+                        <li>Lost Fillings</li>
+                        <li>Dental Injuries</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="appointment-form">
+                <h2>Request Emergency Appointment</h2>
+                <form id="emergencyForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emergency-type">Type of Emergency *</label>
+                        <select id="emergency-type" required>
+                            <option value="">Select Emergency Type</option>
+                            <option value="toothache">Severe Toothache</option>
+                            <option value="broken">Broken/Chipped Tooth</option>
+                            <option value="filling">Lost Filling</option>
+                            <option value="injury">Dental Injury</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Brief Description of Emergency</label>
+                        <textarea id="description" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Request Appointment Now</button>
+                </form>
+            </div>
+            <div class="benefits">
+                <h2>Why Choose Our Emergency Dental Care?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Immediate Attention</h3>
+                        <p>Quick response to dental emergencies</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-user-md"></i>
+                        <h3>Expert Care</h3>
+                        <p>Experienced emergency dental team</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Gentle Treatment</h3>
+                        <p>Comfortable and caring environment</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-credit-card"></i>
+                        <h3>Flexible Payment</h3>
+                        <p>Multiple payment options available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js';
+        import { getDatabase, ref, push } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js';
+
+        // Your Firebase configuration (replace with your own config)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCoJ1zMRTCeigRdluv0jYtg8lpUuuBgTk4",
+  authDomain: "dental-heaven-72a84.firebaseapp.com",
+  databaseURL: "https://dental-heaven-72a84-default-rtdb.firebaseio.com",
+  projectId: "dental-heaven-72a84",
+  storageBucket: "dental-heaven-72a84.firebasestorage.app",
+  messagingSenderId: "1027532780222",
+  appId: "1:1027532780222:web:a27f0c2bf662350061e4ef",
+  measurementId: "G-49M003EQP0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Get a reference to the 'emergencyAppointments' node (changed from 'appointments')
+        const emergencyAppointmentsRef = ref(database, 'emergencyAppointments');
+
+        // Function to write data to Firebase
+        function writeData(name, phone, emergencyType, description) { // Added phone, emergencyType, description parameters
+          push(emergencyAppointmentsRef, {
+            name: name,
+            phone: phone,
+            emergencyType: emergencyType,
+            description: description
+          });
+        }
+
+        // Get the form
+        const emergencyForm = document.getElementById('emergencyForm');
+
+        // **KEY STEP: Add event listener to the form**
+        emergencyForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+
+          // Get form values
+          const name = document.getElementById('name').value;
+          const phone = document.getElementById('phone').value;
+          const emergencyType = document.getElementById('emergency-type').value;
+          const description = document.getElementById('description').value;
+
+          // Write data to Firebase
+          writeData(name, phone, emergencyType, description);
+
+          // Optional: Reset form and display success message
+          emergencyForm.reset();
+          alert('Thank you! We will contact you shortly for your emergency appointment.'); // Simple alert
+        });
+    </script>
+
+</body>
+</html>

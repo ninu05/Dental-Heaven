@@ -1,0 +1,608 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Navigation */
+nav {
+    background-color: #ffffff;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #2c3e50;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #27ae60;
+}
+
+.appointment-btn {
+    background-color: #1e88e5;
+    color: white !important;
+    padding: 0.8rem 1.5rem !important;
+    border-radius: 25px;
+    transition: background-color 0.3s !important;
+}
+
+.appointment-btn:hover {
+    background-color: #1565c0 !important;
+    color: white !important;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('https://images.unsplash.com/photo-1629909613654-28e377c37b09');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 0 2rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.cta-button {
+    background-color: #1e88e5;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #1565c0;
+}
+
+/* Services Section */
+.services {
+    padding: 5rem 2rem;
+    background-color: #f9f9f9;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.service-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.service-card h3, .service-card p {
+    padding: 1rem;
+}
+
+/* Plans Section */
+.plans {
+    padding: 5rem 2rem;
+}
+
+.plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.plan-card {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.plan-card.featured {
+    transform: scale(1.05);
+    border: 2px solid #27ae60;
+}
+
+.price {
+    font-size: 2rem;
+    color: #27ae60;
+    margin: 1rem 0;
+}
+
+.plan-card ul {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.plan-card ul li {
+    margin: 0.5rem 0;
+}
+
+button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #219a52;
+}
+
+/* Contact Section */
+.contact {
+    padding: 5rem 2rem;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.contact-info {
+    margin-top: 2rem;
+}
+
+.contact-info p {
+    margin: 1rem 0;
+}
+
+.contact-info i {
+    color: #27ae60;
+    margin-right: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* General Styles */
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .plan-card.featured {
+        transform: none;
+    }
+}
+
+/* Update color scheme */
+:root {
+    --primary-color: #00bcd4;
+    --secondary-color: #0097a7;
+    --accent-color: #ff4081;
+    --text-color: #333333;
+    --light-gray: #f5f5f5;
+}
+
+button {
+    background-color: var(--primary-color);
+    border-radius: 25px;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+.price {
+    color: var(--primary-color);
+}
+
+.contact-info i {
+    color: var(--primary-color);
+}
+
+/* Navigation Updates */
+.logo i {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+}
+
+.mobile-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Hero Section Updates */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.cta-button.secondary {
+    background-color: transparent;
+    border: 2px solid white;
+}
+
+.hero-features {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+}
+
+/* Service Card Updates */
+.service-features {
+    list-style: none;
+    padding: 0 1rem 1rem;
+}
+
+.service-features li {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.service-features li::before {
+    content: '✓';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+
+/* Why Choose Us Section */
+.why-us {
+    padding: 5rem 2rem;
+    background-color: var(--light-gray);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Plan Card Updates */
+.plan-card.premium {
+    background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
+    position: relative;
+    overflow: visible;
+}
+
+.plan-badge {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: var(--accent-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+/* Insurance Section */
+.insurance {
+    padding: 5rem 2rem;
+    text-align: center;
+    background: white;
+}
+
+.payment-options {
+    margin-top: 2rem;
+    font-size: 2.5rem;
+}
+
+.payment-options i {
+    margin: 0 1rem;
+    color: #666;
+}
+
+/* Footer Updates */
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 3rem 2rem;
+    background: #1a1a1a;
+    color: white;
+}
+
+.social-links a {
+    color: white;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin: 0.5rem 0;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.copyright {
+    text-align: center;
+    padding: 1rem;
+    background: #111;
+    color: white;
+}
+
+/* Responsive Design Updates */
+@media (max-width: 768px) {
+    .mobile-menu {
+        display: block;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .hero-features {
+        flex-direction: column;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 2rem;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    animation: modalOpen 0.3s ease-out;
+}
+
+@keyframes modalOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-btn {
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-btn:hover {
+    color: var(--primary-color);
+}
+
+.modal-body {
+    margin-top: 1.5rem;
+}
+
+.modal-body h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.modal-body ul {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-body ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.modal-body ul li::before {
+    content: '•';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+
+/* Service Card Updates */
+.learn-more-btn {
+    display: block;
+    width: calc(100% - 3rem);
+    margin: 1.5rem auto;
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.learn-more-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Card Grid System */
+.service-grid, .features-grid, .journey-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Base Card Styles */
+.service-card, .feature-card, .step, .quick-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Equal Height Images */
+.service-card img {
+    width: 100%;
+    height: 200px; /* Fixed height for all images */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Card Content Spacing */
+.service-card h3, .feature-card h3, .step h3 {
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.service-features {
+    flex-grow: 1; /* Takes up remaining space */
+    margin: 1rem 0;
+}
+
+/* Button Positioning */
+.learn-more-btn {
+    margin-top: auto; /* Pushes button to bottom */
+    width: 100%;
+}
+
+/* Quick Access Cards */
+.quick-access {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: -50px auto 0;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+}
+
+.quick-card {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .service-grid, .features-grid, .journey-steps, .quick-access {
+        grid-template-columns: 1fr; /* Stack cards on mobile */
+        padding: 1rem;
+    }
+    
+    .service-card, .feature-card, .step, .quick-card {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 400px;
+    }
+}

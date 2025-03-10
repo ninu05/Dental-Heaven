@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booked Appointments - Dental Heaven</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js';
+        import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCoJ1zMRTCeigRdluv0jYtg8lpUuuBgTk4",
+            authDomain: "dental-heaven-72a84.firebaseapp.com",
+            databaseURL: "https://dental-heaven-72a84-default-rtdb.firebaseio.com",
+            projectId: "dental-heaven-72a84",
+            storageBucket: "dental-heaven-72a84.firebasestorage.app",
+            messagingSenderId: "1027532780222",
+            appId: "1:1027532780222:web:a27f0c2bf662350061e4ef",
+            measurementId: "G-49M003EQP0"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const appointmentsRef = ref(database, 'appointments');
+
+        function readData() {
+            onValue(appointmentsRef, (snapshot) => {
+                const data = snapshot.val();
+                const bookedAppointmentsDiv = document.getElementById('booked-appointments');
+                bookedAppointmentsDiv.innerHTML = '';
+
+                if (data !== null) {
+                    Object.keys(data).forEach((key) => {
+                        const appointment = data[key];
+
+                        const appointmentHTML = `
+                            <div class="appointment-card">
+                                <h3>${appointment.name}</h3>
+                                <p><strong>Email:</strong> ${appointment.email}</p>
+                                <p><strong>Phone:</strong> ${appointment.phone}</p>
+                                <p><strong>Date:</strong> ${appointment.date}</p>
+                                <p><strong>Time:</strong> ${appointment.time}</p>
+                                <p><strong>Service:</strong> ${appointment.service}</p>
+                                <p><strong>Notes:</strong> ${appointment.notes ? appointment.notes : "None"}</p>
+                            </div>
+                        `;
+                        bookedAppointmentsDiv.innerHTML += appointmentHTML;
+                    });
+                } else {
+                    bookedAppointmentsDiv.innerHTML = '<p>No appointments booked yet.</p>';
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            readData();
+        });
+    </script>
+    <style>
+        :root {
+            --primary-color: #00bcd4;
+            --secondary-color: #0097a7;
+            --accent-color: #ff4081;
+            --text-color: #2c3e50;
+            --background-color: #f5f7fa;
+            --card-background: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --info-color: #2196f3;
+        }
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: var(--text-color);
+        }
+    
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 30px;
+        }
+    
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease;
+        }
+    
+        .logo:hover {
+            transform: scale(1.05);
+        }
+    
+        .logo i {
+            color: var(--primary-color);
+            font-size: 2.8rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 188, 212, 0.3));
+        }
+    
+        .page-title {
+            margin-top: 15px;
+            font-size: 2.4rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+    
+        .page-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+    
+        .appointment-container {
+            max-width: 900px;
+            margin: 20px auto 40px;
+            background: var(--card-background);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+    
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    
+        #booked-appointments {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+    
+        .appointment-card {
+            background: var(--card-background);
+            padding: 25px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            transition: all 0.3s ease;
+            text-align: left;
+            border-left: 4px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .appointment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+    
+        .appointment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+    
+        .appointment-card h3 {
+            margin: 0 0 15px 0;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            border-bottom: 1px dashed rgba(0, 151, 167, 0.3);
+            padding-bottom: 8px;
+        }
+    
+        .appointment-card p {
+            margin: 12px 0;
+            color: var(--text-color);
+            font-size: 1.05rem;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+        }
+    
+        .appointment-card strong {
+            color: var(--primary-color);
+            margin-right: 8px;
+            min-width: 80px;
+            display: inline-block;
+        }
+    
+        .appointment-card p:last-child {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(0, 0, 0, 0.1);
+        }
+    
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 20px auto;
+        }
+        
+        .loading div {
+            position: absolute;
+            top: 33px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+        
+        .loading div:nth-child(1) {
+            left: 8px;
+            animation: loading1 0.6s infinite;
+        }
+        
+        .loading div:nth-child(2) {
+            left: 8px;
+            animation: loading2 0.6s infinite;
+        }
+        
+        .loading div:nth-child(3) {
+            left: 32px;
+            animation: loading2 0.6s infinite;
+        }
+        
+        .loading div:nth-child(4) {
+            left: 56px;
+            animation: loading3 0.6s infinite;
+        }
+        
+        @keyframes loading1 {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes loading3 {
+            0% { transform: scale(1); }
+            100% { transform: scale(0); }
+        }
+        
+        @keyframes loading2 {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(24px, 0); }
+        }
+    
+        /* Empty state styling */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #7f8c8d;
+        }
+    
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+    
+        .empty-state p {
+            font-size: 1.2rem;
+        }
+
+    .home-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+    .home-button a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .home-button a:hover {
+        background: var(--secondary-color);
+        transform: scale(1.1) rotate(360deg);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            #booked-appointments {
+                grid-template-columns: 1fr;
+            }
+            
+            .appointment-container {
+                padding: 20px;
+                margin: 15px;
+            }
+            
+            .header {
+                padding: 20px 10px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .logo i {
+                font-size: 2.2rem;
+            }
+            
+            .appointment-card {
+                padding: 15px;
+            }
+            
+            .appointment-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .appointment-card p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Add home button -->
+    <div class="home-button">
+        <a href="sample.html" title="Back to Home">
+            <i class="fas fa-home"></i>
+        </a>
+    </div>
+
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-tooth"></i>
+            <span>Dental Heaven</span>
+        </div>
+        <h1 class="page-title">Booked Appointments</h1>
+    </div>
+    <div class="appointment-container">
+        <div id="booked-appointments">
+            <p>Loading appointments...</p>
+        </div>
+    </div>
+</body>
+</html>
